@@ -3,28 +3,6 @@ document
   .getElementById("search-form")
   .addEventListener("submit", (event) => getSearch(event));
 
-function getKanyeGifs() {
-  axios
-    .get(
-      "https://api.giphy.com/v1/gifs/search?api_key=Ros46B5phhwNotKa3guQnu4fpMrEaHkt&q=kanye"
-    )
-    .then(function (res) {
-      //   const gifs = res.data.data;
-      //   console.dir(gifs);
-      const {
-        data: { data },
-      } = res;
-
-      data.map((gif) => {
-        const url = gif.images.downsized.url;
-        const photo = document.createElement("IMG");
-        photo.src = url;
-        document.querySelector("#gifs_container").appendChild(photo);
-      });
-    });
-  //   console.log("clicked");
-}
-
 function getSearch(event) {
   event.preventDefault();
   let search = event.target.search.value;
@@ -38,10 +16,9 @@ function searchGifs(search) {
   let searchTerm = search;
 
   // query giphy api with search term and capture result
+  // need api key
   axios
-    .get(
-      `https://api.giphy.com/v1/gifs/search?api_key=Ros46B5phhwNotKa3guQnu4fpMrEaHkt&q=${searchTerm}`
-    )
+    .get(`https://api.giphy.com/v1/gifs/search?api_key=*******&q=${searchTerm}`)
     .then((result) => {
       const {
         data: { data },
